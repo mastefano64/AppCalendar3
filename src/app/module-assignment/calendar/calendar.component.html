@@ -1,0 +1,126 @@
+<div>
+  <div>
+    <app-calendarnavbar
+      [config]="config"
+      [year]="year"
+      [month]="month"
+      [day]="day"
+      [statusbar]="statusbar"
+      [slectedview]="slectedview"
+      [rooms]="rooms"
+      [manager]="manager"
+      (changeday)="onDayChanged($event)"
+      (changeweek)="onWeekChanged($event)"
+      (changemonth)="onMonthChanged($event)"
+      (changeroom)="onRomChanged($event)"
+      (changeview)="onViewChanged($event)"
+      (opensideroom)="onOpenSideRoom($event)">
+    </app-calendarnavbar>
+  </div>
+  <div>
+    <div class="mainPanel1">
+      <div class="mainPanel2" [ngStyle]="{ 'width': panelSideRoomWidth, 'top': offsetTop }" *ngIf="isopensideroom === true">
+        <div class="groupCell1" *ngFor="let room of rooms; let i = index">
+          <ng-container *ngTemplateOutlet="panelSideRoomTemplate; context: { $implicit: room, index: i }">
+          </ng-container>
+        </div>
+      </div>
+      <div>
+
+        <div *ngIf="slectedview === 'giorno'" class="panelSearch">
+          <table>
+            <tr class="head">
+              <td class="headCelTimeGio">Orario</td>
+              <td class="headCelDataGio">Attività</td>
+            </tr>
+            <tr class="headRoomPanel" *ngIf="enablePanelHeadRoom === true && groupactivity === false">
+              <td>&nbsp;</td>
+              <td>
+                <div class="groupFlex1" [ngStyle]="{ 'height': panelHeadRoomHeight }">
+                  <div class="groupCell1" *ngFor="let group of groupDatasource; let i = index">
+                    <ng-container *ngTemplateOutlet="panelHeadRoomTemplate; context: { $implicit: group, index: i }">
+                    </ng-container>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr class="rows" *ngFor="let hour of stephours" #begintable>
+            <!-- <tr class="rows" *ngFor="let hour of stephours" highlight> -->
+              <td>
+                <app-celtime [hour]="hour"></app-celtime>
+              </td>
+              <ng-container *ngIf="groupactivity === false">
+                <td>
+                  <div class="groupFlex2" (dblclick)="onCreateActivityGroupClick($event)">
+                    <div class="groupCell2" *ngFor="let group of groupDatasource">
+                      <app-activity
+                        [slectedview]="slectedview"
+                        [hour]="hour"
+                        [date]="currentYMD"
+                        [rooms]="rooms"
+                        [datasource]="group.items"
+                        [curractivityid]="curractivityid"
+                        (changestatusbar)="onStatusbarChanged($event)"
+                        (changefocuscell)="onFocusCellChanged($event)"
+                        (createactivity)="onCreateActivity($event)"
+                        (editactivity)="onEditActivity($event)">
+                      </app-activity>
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+              <ng-container *ngIf="groupactivity === true">
+                <td>
+                  <app-activity
+                    [slectedview]="slectedview"
+                    [hour]="hour"
+                    [date]="currentYMD"
+                    [rooms]="rooms"
+                    [datasource]="datasource"
+                    [curractivityid]="curractivityid"
+                    (changestatusbar)="onStatusbarChanged($event)"
+                    (changefocuscell)="onFocusCellChanged($event)"
+                    (createactivity)="onCreateActivity($event)"
+                    (editactivity)="onEditActivity($event)">
+                  </app-activity>
+                </td>
+              </ng-container>
+            </tr>
+          </table>
+        </div>
+
+        <div *ngIf="slectedview === 'settimana'" class="panelSearch">
+          <table>
+            <tr class="head">
+              <td class="headCelTimeSet">Orario</td>
+              <td class="headCelDataSet" *ngFor="let day of stepdays">
+                <app-celdate [date]="day"></app-celdate>
+              </td>
+            </tr>
+            <tr class="rows" *ngFor="let hour of stephours" #begintable>
+            <!-- <tr class="rows" *ngFor="let hour of stephours" highlight> -->
+              <td>
+                <app-celtime [hour]="hour"></app-celtime>
+              </td>
+              <td *ngFor="let day of stepdays">
+                <app-activity
+                  [slectedview]="slectedview"
+                  [hour]="hour"
+                  [date]="day.date"
+                  [rooms]="rooms"
+                  [datasource]="datasource"
+                  [curractivityid]="curractivityid"
+                  (changestatusbar)="onStatusbarChanged($event)"
+                  (changefocuscell)="onFocusCellChanged($event)"
+                  (createactivity)="onCreateActivity($event)"
+                  (editactivity)="onEditActivity($event)">
+                </app-activity>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

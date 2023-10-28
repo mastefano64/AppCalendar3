@@ -1,0 +1,66 @@
+<div>
+  <div class="containerBox">
+    <div class="panelRoomButton" *ngIf="enablePanelSideRoom === true">
+      <button mat-icon-button (click)="onRoomButton()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="panelDatePicker">
+      <button mat-icon-button (click)="picker.open()">
+        <mat-icon>calendar_today</mat-icon>
+      </button>
+      <mat-datepicker #picker></mat-datepicker>
+      <input matInput [matDatepicker]="picker" name="datpicker" [ngModel]="datpicker"
+                 [hidden]="'true'" (dateChange)="onPickerChange($event)">
+    </div>
+    <div *ngIf="slectedview === 'giorno'" class="panelSearch">
+      <mat-form-field>
+        <mat-select name="room" [ngModel]="roomid" (selectionChange)="onRoomChange($event)">
+          <mat-option [value]="0">-- All room --</mat-option>
+          <mat-option *ngFor="let room of rooms" [value]="room.roomId">
+            {{ room.roomName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;
+      <button mat-raised-button color="primary" (click)="onPrevMonth()">Mese precedente</button>&nbsp;
+      <button mat-raised-button color="primary" (click)="onNextMonth()">Mese successivo</button>&nbsp;
+      <button mat-raised-button color="primary" (click)="onPrevDay()">Giorno precedente</button>&nbsp;
+      <button mat-raised-button color="primary" (click)="onNextDay()">Giorno successivo</button>&nbsp;
+    </div>
+    <div *ngIf="slectedview === 'settimana'" class="panelSearch">
+      <mat-form-field>
+        <mat-select name="room" [ngModel]="roomid" (selectionChange)="onRoomChange($event)">
+          <mat-option [value]="0">-- All room --</mat-option>
+          <mat-option *ngFor="let room of rooms" [value]="room.roomId">
+            {{ room.roomName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;
+      <button mat-raised-button color="primary" (click)="onPrevWeek()">Settimana precedente</button>&nbsp;
+      <button mat-raised-button color="primary" (click)="onNextWeek()">Settimana Successiva</button>&nbsp;
+    </div>
+    <div class="panelSwitcher">
+      <mat-button-toggle-group [value]="slectedview" (change)="onViewChange($event)">
+        <mat-button-toggle value="giorno">Giorno</mat-button-toggle>
+        <mat-button-toggle value="settimana">Settimana</mat-button-toggle>
+      </mat-button-toggle-group>
+      &nbsp;
+      <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <app-calendarsetting [config]="config"></app-calendarsetting>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="containerStatusbar">
+    {{ currvalues?.dayWeekName }} {{ currvalues?.day }} {{ currvalues?.monthName }} {{ currvalues?.year }}
+    <div class="panelStatusbar" *ngIf="statusbar">
+      &nbsp;-&nbsp; Activity:
+      {{ statusbar.rooomname }}  &nbsp;-&nbsp; {{ statusbar.activity.startTime }} / {{ statusbar.activity.endTime }}
+      &nbsp;{{ statusbar.activity.title }}&nbsp;
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="pagescheduler">
+  <app-calendaractivity
+    [config]="config"
+    [year]="year"
+    [month]="month"
+    [day]="day"
+    [datasource]="datasource"
+    [rooms]="rooms"
+    (changeactivity)="onActivityChanged($event)"
+    (createactivity)="onCreateActivity($event)"
+    (editactivity)="onEditActivity($event)">
+
+    <div class="table-head" *panelHeadRoom="let head; let i = index">
+      <div>
+        {{ head.room.roomId }} {{ head.room.roomName }}
+      </div>
+    </div>
+  </app-calendaractivity>
+</div>

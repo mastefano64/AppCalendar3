@@ -1,0 +1,52 @@
+.panelCalendarList {
+  margin: 20px 0px 0px 0px;
+  padding: 0px 0px 5px 5px;
+  height: calc(100vh - 220px);
+  border: solid 1px lightgray;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+mat-card {
+  margin: 5px 5px 0px 0px;
+}
+
+.inputSearch1 {
+  margin: 5px 15px 0px 0px;
+}
+
+.inputSearch2 {
+  width: 100%;
+  height: 30px;;
+}
+
+.inputSelect1 {
+  margin: 5px 5px 0px 0px;
+}
+
+.inputSelect2 {
+  width: 100%;
+  height: 34px;;
+}
+
+.cardVisible {
+  border: solid 2px gray;
+}
+
+.buttonEditContainer {
+  position: relative;
+}
+
+.buttonEditBox {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+}
+
+button[mat-mini-fab] {
+  transform: scale(0.7) !important;
+}
+
+.itemLabel {
+  font-size: 15px;
+}

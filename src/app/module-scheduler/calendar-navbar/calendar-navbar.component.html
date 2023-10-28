@@ -1,0 +1,56 @@
+<div>
+  <div class="containerNavigationBar">
+    <div class="panelNavigationBarSx">
+      <div class="panelSearch">
+        <ng-container *ngIf="scheduler.panelposition === 'popup'" >
+          <app-calendarsearchbtn [config]="config" (selectreservation)="onReservationSelected($event)">
+          </app-calendarsearchbtn>
+        </ng-container>
+        <ng-container *ngIf="scheduler.panelposition === 'aside'" >
+          <button mat-icon-button cdkOverlayOrigin (click)="onOpenClosPanelList()">
+            <mat-icon>list</mat-icon>
+          </button>
+        </ng-container>
+      </div>
+      <div class="panelDatePicker">
+        <button mat-icon-button (click)="picker.open()">
+          <mat-icon>calendar_today</mat-icon>
+        </button>
+        <mat-datepicker #picker></mat-datepicker>
+        <input matInput [matDatepicker]="picker" name="datpicker" [ngModel]="datpicker"
+                   [hidden]="'true'" (dateChange)="onPickerChange($event)">
+      </div>
+      &nbsp;
+      <mat-form-field>
+        <mat-select name="roomtype" [ngModel]="scheduler.roomtype" (selectionChange)="onRoomChange($event)">
+          <mat-option value="0">-- All room --</mat-option>
+          <mat-option value="1">Single</mat-option>
+          <mat-option value="2">Double</mat-option>
+          <mat-option value="3">Triple</mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;
+      <button mat-raised-button color="primary" (click)="onPrev15Day()">15 gg precedenti</button>&nbsp;
+      <button mat-raised-button color="primary" (click)="onNext15Day()">15 gg successivi</button>&nbsp;
+      <button mat-raised-button color="primary" (click)="onPrevMonth()">Mese precedente</button>&nbsp;
+      <button mat-raised-button color="primary" (click)="onNextMonth()">Mese successivo</button>&nbsp;
+    </div>
+    <div class="panelNavigationBarDx">
+      <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <app-calendarsetting [config]="config"></app-calendarsetting>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="containerStatusbar">
+    {{ scheduler.currvalues?.dayWeekName }} {{ scheduler.currvalues?.day }}
+    {{ scheduler.currvalues?.monthName }} {{ scheduler.currvalues?.year }}
+    <div class="panelStatusbar" *ngIf="statusbar">
+      &nbsp;-&nbsp; Reservation:
+      {{ statusbar.startDate | date: 'dd-MM-yyyy' }} / {{ statusbar.endDate | date: 'dd-MM-yyyy' }}&nbsp;
+      {{ statusbar.name }}&nbsp;
+    </div>
+  </div>
+</div>

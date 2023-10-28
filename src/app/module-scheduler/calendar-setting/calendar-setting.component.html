@@ -1,0 +1,10 @@
+<div class="panelSettting">
+  <mat-radio-group [value]="scheduler.panelposition" (change)="onChangeRadioButton($event)">
+    <mat-radio-button value="popup">Lista come popup</mat-radio-button>
+    <mat-radio-button value="aside">Lista affiancata</mat-radio-button>
+  </mat-radio-group>
+  <mat-checkbox [checked]=" this.scheduler.itembookingbehaviour === 'over'"
+                    (change)="onChangeCheckbox($event)">
+    Booking behaviour item over
+  </mat-checkbox>
+</div>

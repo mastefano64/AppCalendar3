@@ -1,0 +1,19 @@
+
+.pagescheduler {
+    margin: 10px;
+}
+
+.table-head {
+  text-align: center;
+  font-size: 14;
+  font-weight: bold;
+}
+
+.table-side {
+  text-align: left;
+  font-size: 14;
+}
+
+mat-card {
+  margin: 5px;
+}

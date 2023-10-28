@@ -1,0 +1,12 @@
+<div class="pagescheduler">
+  <app-calendar-scheduler
+    [config]="config"
+    [day]="day"
+    [month]="month"
+    [year]="year"
+    [rooms]="rooms"
+    [bookings]="bookings"
+    (changereservation)="onReservationChanged($event)"
+    (dayreservation)="onDayReservation($event)">
+  </app-calendar-scheduler>
+</div>

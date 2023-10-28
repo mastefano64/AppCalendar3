@@ -1,0 +1,16 @@
+<mat-card [ngClass]="{ cardVisible: booking.visible === true }" (click)="onSelect(booking)"
+       (mouseenter)="onMouseEnter(booking)" (mouseleave)="onMouseLeave(booking)">
+  <mat-card-content>
+    <div class="buttonEditContainer">
+      <div class="buttonEditBox" *ngIf="booking.visible === true">
+        <button mat-mini-fab color="primary" (click)="onEdit(booking)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+    <span class="itemLabel">Tipo camera: </span><span>{{ booking.roomNumber }} {{ booking.roomTypeName }}</span><br>
+    <span class="itemLabel">Data arrivo: </span><span>{{ booking.startDate | date: 'dd/MM/yyyy' }}</span><br>
+    <span class="itemLabel">Data partenza: </span><span>{{ booking.endDate | date: 'dd/MM/yyyy' }}</span><br>
+    <span class="itemLabel">Nome: </span><span>{{ booking.name }}</span><br>
+  </mat-card-content>
+</mat-card>

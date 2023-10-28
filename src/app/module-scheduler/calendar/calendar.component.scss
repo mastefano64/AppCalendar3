@@ -1,0 +1,131 @@
+.panelFlex {
+  display: flex;
+}
+
+.panelCelSx {
+  flex: 0 0 auto;
+}
+
+.panelCelDx  {
+  flex: 0 1 100%;
+}
+
+.rectangle {
+  position: relative;
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #121621;
+}
+
+// required for the enableGhostResize option to work
+mwlResizable {
+  box-sizing: border-box;
+}
+
+.resize-handle-top,
+.resize-handle-bottom {
+  position: absolute;
+  height: 5px;
+  cursor: row-resize;
+  width: 100%;
+}
+
+.resize-handle-top {
+  top: 0;
+}
+
+.resize-handle-bottom {
+  bottom: 0;
+}
+
+.resize-handle-left,
+.resize-handle-right {
+  position: absolute;
+  height: 100%;
+  cursor: col-resize;
+  width: 5px;
+}
+
+.resize-handle-left {
+  left: 0;
+}
+
+.resize-handle-right {
+  right: 0;
+}
+
+app-calendarlistpanel {
+  width: 100%;
+}
+
+table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+table.tabreservation {
+  margin-top: 20px;
+}
+
+tr.head .headEmpty {
+  width: 120px;
+}
+
+tr.head .headDaysA {
+  height: 46px;
+  font-size: 16px;
+}
+
+tr.head .headDaysB {
+  height: 30px;
+  font-size: 14px;
+}
+
+tr.head td {
+  width: 30px;
+  text-align: center;
+  border: solid lightgray 1px;
+}
+
+.rowHeadRoom {
+  display: flex;
+  justify-content: center;
+}
+
+.rowHeadRoom div {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+tr.rows .rowRooms {
+  width: 120px;
+  font-size: 12px;
+}
+
+tr.rows {
+  height: 30px;
+}
+
+tr.rows:hover {
+  background-color: #e0e0e0;
+}
+
+tr.rows td {
+  width: 30px;
+  text-align: center;
+  border: solid lightgray 1px;
+}
+
+  th:first-child, td:first-child {
+    padding-left: 2px;
+  }
+
+  th:last-child, td:last-child {
+    padding-right: 2px;
+  }
+
+  .rows span {
+    font-size: 13px;
+  }

@@ -1,0 +1,23 @@
+<div class="panelCalendarList">
+  <div class="inputSearch1">
+    <input class="inputSearch2" placeholder="cerca nome" [(ngModel)]="searchtext" #fastsearch>
+  </div>
+  <div class="inputSelect1">
+    <select class="inputSelect2" name="typeorder" [(ngModel)]="typeorder"
+                     (change)="onOrderListChange()">
+      <option value="1">Ordinamento numero camera</option>
+      <option value="2">Ordinamento data arrivo</option>
+      <option value="3">Ordinamento data partenza</option>
+    </select>
+  </div>
+  <ng-container *ngFor="let b of listbookings">
+    <app-calendarlistitem
+      [config]="config"
+      [booking]="b"
+      (changedateitem)="onSelect(b)"
+      (changefocuslistitemE)="onMouseEnter(b)"
+      (changefocuslistitemL)="onMouseLeave(b)"
+      (dayreservationitem)="onEdit(b)">
+    </app-calendarlistitem>
+  </ng-container>
+</div>

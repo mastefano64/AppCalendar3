@@ -1,0 +1,10 @@
+<div class="activityRow" (dblclick)="onCreateActivityClick($event)">
+  <div class="activityBox">
+    <div *ngFor="let item of activities" class="activtyRoomBoxA {{ classRoomBox(item) }}">
+      <div class="activtyRoomBoxB" (mouseenter)="onMouseEnter(item)" (mouseleave)="onMouseLeave(item)"
+                            (dblclick)="onEditActivityClick($event, item)">
+        &nbsp;
+      </div>
+    </div>
+  </div>
+</div>
